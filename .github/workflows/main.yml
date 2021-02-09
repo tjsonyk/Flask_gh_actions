@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: <логин-на-docker-hub>/<репозиторий-на-docker-hub>:latest
+          tags: tjsonyk/tjsonyk/flask_app:latest
   
   deploy:
     runs-on: ubuntu-latest
@@ -57,6 +57,6 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }} # если ваш ssh-ключ защищен паролем
         script: |
-          sudo docker pull <имя-пользователя>/<имя-репозитория>
+          sudo docker pull tjsonyk/tjsonyk/flask_app
           sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 <имя-пользователя>/<имя-репозитория>
+          sudo docker run --rm -d -p 5000:5000 tjsonyk/tjsonyk/flask_app
